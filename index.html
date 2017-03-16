@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="https://getbootstrap.com/dist/css/bootstrap.min.css">
+  <script src='libraries/jquery-2.2.1.min.js' ></script>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+      $.ajax({
+        type: "GET",
+        url: "teams.csv",
+        dataType: "text",
+        success: function(data) {logData(data);}
+      });
+    });
+
+    function logData(teamList) {
+      var rowsSeparated = teamList.split(';');
+      var statTable = document.getElementById("statTable").getElementsByTagName("tbody")[0];
+      var statTable = document.getElementById("statTable");
+      for (var i = 1; i < rowsSeparated.length-1; i++) {
+        values = rowsSeparated[i].split(",");
+        var newRow = statTable.insertRow(statTable.rows.length);
+        newRow.insertCell(0).innerHTML = values[0]
+        newRow.insertCell(1).innerHTML = values[1]
+        newRow.insertCell(2).innerHTML = values[2]
+      }
+    }
+  </script>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">NSPI</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Rankings</a></li>
+        <li><a href="#">The Math</a></li>
+        <li><a href="#">About Nick</a></li>
+        <li><a href="#">Comments</a></li>
+        <li><a href="#">Donate</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="jumbotron">
+      <h1 style="fixed:left;">Nick Smith Power Index</h1>
+      <h4>Your source for all your NCAA ranking needs.</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+      <div class="well">
+        <table id="statTable" class="table table-striped table-condensed" style="width:100%">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Team</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="well"><p>
+The NSPI (Nick Smith Power Index) is the product of an accountant who wanted to
+divide the NCAA field for analysis. He's hoping the sum of his labors doesn't
+subtract from his enjoyment but pays dividends instead.
+<br><br>Any bet made based on his metrics is a guaranteed win and comes with
+the full faith and backing of the Nick Smith<sup>*</sup>.
+<br><br>As an accountant, I  know that this is the most presitgious of all the
+power indicies. All of this information is 100% true and that this is the
+absolute ranking of teams arranged by talent in the NCAA.
+<br><br><b>Disclaimer!</b> None of this is legally binding. I'm not even sure we are
+supposed to be using real team names. Please direct all complaints
+to Nick, because everything is his fault always. Boiler Up!</p>
+<p style="font-size:12px;"><sup>*</sup><em>This is in no way shape or form a guarantee and he will
+absolutely not reimburse you for any gambling losses. Gambling is dumb unless
+you make money off of it, in which case you should pay Nick some of that money
+for all of his hard work.</em><sup>**</sup></p>
+<p style="font-size:10px;"><sup>**</sup><em>Any money given to Nick will not
+ make it to him. I will take it and keep it, because I am very selfish and will
+ just tell him that the internet is full of jerks who don't want to pay for
+ anything.</em></p>
+<p style="font-size:8px;"><sup>***</sup><em>I know there wasn't a triple
+asterisk, but I figured this would be a good place to tell Nick that he is a
+loser without him reading it. Suck it, Nick!</em></p>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
