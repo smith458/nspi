@@ -8,7 +8,7 @@
     $(document).ready(function() {
       $.ajax({
         type: "GET",
-        url: "teams.csv",
+        url: "NSPIRankings2017.csv",
         dataType: "text",
         success: function(data) { buildTable(data);}
       });
@@ -25,7 +25,7 @@
         newRow.insertCell(0).innerHTML = values[0];
         newRow.insertCell(1).innerHTML = values[1];
         newRow.insertCell(2).innerHTML = values[2];
-        newRow.insertCell(3).innerHTML = values[3]
+        newRow.insertCell(3).innerHTML = values[3];
       }
       oldBody.parentNode.replaceChild(newBody, oldBody);
     }
@@ -61,8 +61,8 @@
             <tr>
               <th>Rank</th>
               <th>Team</th>
-              <th>Score</th>
               <th>Conference</th>
+              <th>Score</th>
             </tr>
           </thead>
           <tbody id="tableBody">
