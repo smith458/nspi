@@ -10,21 +10,24 @@
         type: "GET",
         url: "teams.csv",
         dataType: "text",
-        success: function(data) {logData(data);}
+        success: function(data) { buildTable(data);}
       });
     });
 
-    function logData(teamList) {
+    function buildTable(teamList) {
+      console.log(teamList);
+      var newBody = document.createElement('tbody');
+      var oldBody = document.getElementById("tableBody");
       var rowsSeparated = teamList.split(';');
-      var statTable = document.getElementById("statTable").getElementsByTagName("tbody")[0];
-      var statTable = document.getElementById("statTable");
       for (var i = 1; i < rowsSeparated.length-1; i++) {
         values = rowsSeparated[i].split(",");
-        var newRow = statTable.insertRow(statTable.rows.length);
-        newRow.insertCell(0).innerHTML = values[0]
-        newRow.insertCell(1).innerHTML = values[1]
-        newRow.insertCell(2).innerHTML = values[2]
+        var newRow = newBody.insertRow(newBody.rows.length);
+        newRow.insertCell(0).innerHTML = values[0];
+        newRow.insertCell(1).innerHTML = values[1];
+        newRow.insertCell(2).innerHTML = values[2];
+        newRow.insertCell(3).innerHTML = values[3]
       }
+      oldBody.parentNode.replaceChild(newBody, oldBody);
     }
   </script>
 <body>
@@ -59,9 +62,10 @@
               <th>Rank</th>
               <th>Team</th>
               <th>Score</th>
+              <th>Conference</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="tableBody">
           </tbody>
         </table>
       </div>
